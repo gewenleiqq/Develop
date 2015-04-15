@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<!-- 日志输出编码 -->  
+        <Encoding>UTF-8</Encoding> 
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+	</appender>
+	<!-- 按照每天生成日志文件 -->
+	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>logs/warn.log</file>
+		
+		<!-- 日志输出编码 -->  
+       <Encoding>UTF-8</Encoding> 
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 日志输出文件名 -->
+			<fileNamePattern>logs/warn.%d{yyyy-MM-dd}.log</fileNamePattern>
+			<!-- 日志保存的最大时间 -->
+			<maxHistory>1</maxHistory>
+		</rollingPolicy>
+		
+		<encoder>
+			<!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符-->
+			<pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+		</encoder>
+		
+		 <!--日志文件最大的大小-->  
+       	<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">  
+         <MaxFileSize>10MB</MaxFileSize> 
+       </triggeringPolicy> 
+	</appender>
+
+	<!-- 在程序的开发测试阶段，可以调整level的级别，常用级别优先级为： -->
+	<!-- TRACE < DEBUG < INFO < WARN < ERROR  -->
+	<logger name="org.ssi" level="DEBUG" />
+	<logger name="org.apache.ibatis" level="DEBUG" />
+	
+	<logger name="java.sql.Connection" level="DEBUG" />
+	<logger name="java.sql.PreparedStatement" level="DEBUG" />
+	<logger name="java.sql.ResultSet" level="DEBUG" />
+
+	<!--log4jdbc -->
+	<logger name="jdbc.sqltiming" level="DEBUG"/>
+	<logger name="jdbc.resultset" level="DEBUG"/>
+	
+	<!--  根据级别，修改append-ref，不同日志可以输出到不同文件-->
+	<logger name="com.john.service" level="INFO" additivity="false">  
+    	<appender-ref ref="rollingFile" />  
+	</logger>
+	  
+	<root level="WARN">
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+		
+	</root>
+	
+</configuration>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+ 
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:noNamespaceSchemaLocation="ehcache.xsd" 
+	updateCheck="true" 
+	monitoring="autodetect" 
+	dynamicConfig="true">
+ 
+<diskStore path="d:/ecache"/>
+
+ 
+  
+ 
+<defaultCache
+        maxEntriesLocalHeap="10000"
+        eternal="false"
+        timeToIdleSeconds="120"
+        timeToLiveSeconds="120"
+        diskSpoolBufferSizeMB="30"
+        maxEntriesLocalDisk="10000000"
+        diskExpiryThreadIntervalSeconds="120"
+        memoryStoreEvictionPolicy="LRU">
+    <persistence strategy="localTempSwap"/>
+</defaultCache>
+
+<cache 	name="sampleCache1" maxEntriesLocalHeap="1000" 
+		maxEntriesLocalDisk="100" 
+		eternal="false"
+	 	diskSpoolBufferSizeMB="20" 
+	 	timeToIdleSeconds="300" 
+	 	timeToLiveSeconds="600" 
+		memoryStoreEvictionPolicy="LRU" 
+	 	transactionalMode="off">
+		<persistence strategy="localTempSwap"  />
+</cache>
+ 
+<cache name="sampleCache2" 
+	maxEntriesLocalHeap="1000" 
+	eternal="true" 
+	memoryStoreEvictionPolicy="FIFO"
+/>
+ 
+<cache name="sampleCache3" 
+	maxEntriesLocalHeap="500" 
+	eternal="false" 
+	overflowToDisk="true" 
+	diskPersistent="true" 
+	timeToIdleSeconds="300" 
+	timeToLiveSeconds="600" 
+	diskExpiryThreadIntervalSeconds="1"
+	memoryStoreEvictionPolicy="LFU">
+</cache>
+ 
+<cache name="sampleTerracottaCache" 
+	maxBytesLocalHeap="10m" 
+	eternal="false" 
+	timeToIdleSeconds="3600" 
+	timeToLiveSeconds="1800">
+</cache>
+</ehcache>
