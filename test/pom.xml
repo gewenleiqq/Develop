@@ -7,4 +7,11 @@
 	<version>1.0.0-SNAPSHOT</version>
 	<name>test</name>
 	<packaging>pom</packaging>
+	<modules>
+		<module>Core</module>
+		<module>EHcacheTest</module>
+		<module>MemcachedClient</module>
+		<module>Senior</module>
+		<module>SpringMvcMybatis3</module>
+	</modules>
 </project>
