@@ -16,7 +16,8 @@ The exchange of learning, only when it comes to your interest please let us know
 2.请用maven构建java web project或者java project！       
 3.jdk1.7           
 ......    
-待办事项（优先级按顺序排列）：
+待办事项（优先级按顺序排列）： 
+
 1.学习nginx并应用  
 2.学习redis并应用   
 3.memcahed和ehcached  
